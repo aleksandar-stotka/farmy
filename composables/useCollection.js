@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import { projectFirestore } from '~/firebase/config';
+import { projectFirestore, serverTimestamp } from '~/firebase/config';
 import { collection, addDoc } from 'firebase/firestore';
 
 const useCollection = (collectionName) => {
@@ -11,7 +11,10 @@ const useCollection = (collectionName) => {
 
     try {
       const colRef = collection(projectFirestore, collectionName);
-      await addDoc(colRef, doc);
+      await addDoc(colRef, {
+        ...doc,
+        createdAt: serverTimestamp()  // Add server timestamp
+      });
     } catch (err) {
       console.log(err.message);
       error.value = 'could not send the message';

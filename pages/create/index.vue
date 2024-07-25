@@ -1,35 +1,37 @@
 <template>
     <div>
-   <form @submit.prevent="handleSubmit" action="">
-    <input type="text" placeholder="name" v-model="title">
-    <input type="text" placeholder="description" v-model="description">
-    <input type="number" placeholder="number" v-model="cowNum">
-    <button>submit</button>
-   </form>
+        <form @submit.prevent="handleSubmit" action="">
+            <input type="text" placeholder="name" v-model="title">
+            <input type="text" placeholder="description" v-model="description">
+            <input type="number" placeholder="number" v-model="cowNum">
+            <input type="date" placeholder="date" v-model="dateBorn">
+            <button>submit</button>
+        </form>
     </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { useCollection } from '#imports';
-const {addDocument} = useCollection('cawList')
+import { Timestamp } from '@/firebase/config';
 
-  const title = ref('')
-  const description = ref('')
-  const cowNum = ref('')
+const { addDocument } = useCollection('cawList');
 
-  
+const title = ref('');
+const description = ref('');
+const cowNum = ref('');
+const dateBorn = ref('');
 
-
- const handleSubmit = async () => {
-      await addDocument({
+const handleSubmit = async () => {
+    await addDocument({
         title: title.value,
-        description:description.value
-      })
- }
-
-
+        description: description.value,
+        cowNum: cowNum.value,
+        dateBorn: Timestamp.fromDate(new Date(dateBorn.value)),
+    });
+};
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+/* Your styles here */
 </style>
