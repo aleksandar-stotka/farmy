@@ -1,25 +1,24 @@
-import { ref } from 'vue'
-import { projectFirestore } from '../firebase/config'
+import { ref } from 'vue';
+import { projectFirestore } from '~/firebase/config';
+import { collection, addDoc } from 'firebase/firestore';
 
-const useCollection = (collection) => {
+const useCollection = (collectionName) => {
+  const error = ref(null);
 
-  const error = ref(null)
-
-  // add a new document
-  const addDoc = async (doc) => {
-    error.value = null
+  // Add a new document
+  const addDocument = async (doc) => {
+    error.value = null;
 
     try {
-      await projectFirestore.collection(collection).add(doc)
+      const colRef = collection(projectFirestore, collectionName);
+      await addDoc(colRef, doc);
+    } catch (err) {
+      console.log(err.message);
+      error.value = 'could not send the message';
     }
-    catch(err) {
-      console.log(err.message)
-      error.value = 'could not send the message'
-    }
-  }
+  };
 
-  return { error, addDoc }
+  return { error, addDocument };
+};
 
-}
-
-export default useCollection
+export default useCollection;
