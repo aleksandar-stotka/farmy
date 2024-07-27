@@ -1,5 +1,4 @@
-import { getCollection } from '#imports';
-import { FarmList } from '../../.nuxt/components';
+
 <template>
   <div v-if="error">Could not fetch the data</div>
      <FarmList :farmDocs="farmDocs" />

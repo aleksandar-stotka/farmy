@@ -1,24 +1,36 @@
 <template>
+    <div>
+      <input type="text" v-model="searchTerm" placeholder="Search by title" />
+    </div>
     <div v-if="farmDocs">
-      <div v-for="doc in farmDocs" :key="doc.id">
+      <div v-for="doc in filterFarmDocs" :key="doc.id">
         <h1>{{ doc.title }}</h1>
         <p>{{ doc.description }}</p>
       </div>
     </div>
   </template>
   
-  <script lang="ts">
-  import { defineComponent } from 'vue';
+  <script setup>
+  import { defineProps, ref, computed } from 'vue';
   
-
+  const props = defineProps({
+    farmDocs: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+  });
   
-  export default defineComponent({
-    name: 'YourComponent',
-    props: ['farmDocs']
+  const searchTerm = ref('');
+  
+  const filterFarmDocs = computed(() => {
+    return props.farmDocs.filter((item) =>
+      item.title.toLowerCase().includes(searchTerm.value.toLowerCase())
+    );
   });
   </script>
   
-  <style  scoped>
+  <style scoped>
   /* Your styles here */
   </style>
   
