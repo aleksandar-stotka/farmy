@@ -1,13 +1,29 @@
 <template>
     <div>
-      <input type="text" v-model="searchTerm" placeholder="Search by title or cow number" />
+      <input
+        type="text"
+        v-model="searchTerm"
+        placeholder="Search by title or cow number"
+        class="mb-4 p-2 border rounded"
+      />
     </div>
     <div v-if="farmDocs">
-      <div v-for="doc in filterFarmDocs" :key="doc.id">
-        <h1>{{ doc.title }}</h1>
-        <p>{{ doc.description }}</p>
-        <span>{{ doc.cowNum }}</span>
-      </div>
+      <table class="min-w-full bg-white border">
+        <thead>
+          <tr>
+            <th class="py-2 px-4 border-b">Title</th>
+            <th class="py-2 px-4 border-b">Description</th>
+            <th class="py-2 px-4 border-b">Cow Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="doc in filterFarmDocs" :key="doc.id" class="hover:bg-gray-100">
+            <td class="py-2 px-4 border-b">{{ doc.title }}</td>
+            <td class="py-2 px-4 border-b">{{ doc.description }}</td>
+            <td class="py-2 px-4 border-b">{{ doc.cowNum }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </template>
   
@@ -36,6 +52,6 @@
   </script>
   
   <style scoped>
-  /* Your styles here */
+  /* Additional scoped styles if needed */
   </style>
   
