@@ -15,6 +15,8 @@ import { ref } from 'vue';
 import { useCollection } from '#imports';
 import { Timestamp } from '@/firebase/config';
 
+const router = useRouter()
+
 const { addDocument } = useCollection('cawList');
 
 const title = ref('');
@@ -28,7 +30,9 @@ const handleSubmit = async () => {
         description: description.value,
         cowNum: cowNum.value,
         dateBorn: Timestamp.fromDate(new Date(dateBorn.value)),
-    });
+    }).then(() =>{
+        router.push('/dashboard')
+    })
 };
 </script>
 

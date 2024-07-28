@@ -21,6 +21,7 @@
             <td class="py-2 px-4 border-b">{{ doc.title }}</td>
             <td class="py-2 px-4 border-b">{{ doc.description }}</td>
             <td class="py-2 px-4 border-b">{{ doc.cowNum }}</td>
+            <td>{{doc.createdAt.toDate().toDateString()}}</td>
           </tr>
         </tbody>
       </table>
