@@ -14,6 +14,7 @@
             <th class="py-2 px-4 border-b">Title</th>
             <th class="py-2 px-4 border-b">Description</th>
             <th class="py-2 px-4 border-b">Cow Number</th>
+            <th class="py-2 px-4 border-b">Date</th>
           </tr>
         </thead>
         <tbody>
