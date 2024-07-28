@@ -1,16 +1,26 @@
-import { useRoute } from 'vue-router';
 <template>
-    <div>
-    this is id<p>{{id}}</p>
+    <div v-if="error">{{ error }}</div>
+    <div v-else-if="farmDoc">
+      <h1 class="text-2xl font-bold">{{ farmDoc.title }}</h1>
+      <p class="mt-4">{{ farmDoc.description }}</p>
+      <span class="block mt-2 text-gray-600">Cow Number: {{ farmDoc.cowNum }}</span>
+      <span class="block mt-2 text-gray-600">Date: {{ new Date(farmDoc.createdAt.seconds * 1000).toDateString() }}</span>
     </div>
-</template>
-
-<script setup>
-   const {id} = useRoute().params
-
-
-</script>
-
-<style  scoped>
-
-</style>
+    <div v-else>Loading...</div>
+  </template>
+  
+  <script setup>
+  import { ref } from 'vue';
+  import { useRoute } from 'vue-router';
+  import getDocument from '~/composables/getDocument'; // Ensure correct path
+  
+  const route = useRoute();
+  const { id } = route.params;
+  
+  const { document: farmDoc, error } = getDocument('cawList', id);
+  </script>
+  
+  <style scoped>
+  /* Additional scoped styles if needed */
+  </style>
+  

@@ -23,6 +23,7 @@
             <td class="py-2 px-4 border-b">{{ doc.description }}</td>
             <td class="py-2 px-4 border-b">{{ doc.cowNum }}</td>
             <td>{{doc.createdAt.toDate().toDateString()}}</td>
+            <NuxtLink :to="`/detailsList/${doc.id}`">details</NuxtLink>
           </tr>
         </tbody>
       </table>
@@ -31,6 +32,7 @@
   
   <script setup>
   import { defineProps, ref, computed } from 'vue';
+
   
   const props = defineProps({
     farmDocs: {
