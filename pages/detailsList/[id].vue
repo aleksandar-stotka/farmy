@@ -27,7 +27,8 @@
   
   const handleDelete = async () => {
     await deleteDocument();
-    router.push('/dashboard');
+    // Use replace to replace the current entry in the history stack
+    router.replace('/dashboard');
     // Set the deleted document route
   };
   </script>
