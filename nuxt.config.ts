@@ -2,13 +2,12 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
-
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-
+  plugins: ['~/plugins/deletedDocRoute.js'],
   compatibilityDate: '2024-07-27',
-})
+});

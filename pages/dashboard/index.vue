@@ -8,7 +8,10 @@
 import { getCollection } from '#imports';
 
 const {error, documents: farmDocs} = getCollection("cawList")
+ definePageMeta({
+  middleware:'redirect'
 
+ })
 
 
 

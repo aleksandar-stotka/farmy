@@ -7,6 +7,7 @@
           <p class="mt-4">{{ farmDoc.description }}</p>
           <span class="block mt-2 text-gray-600">Cow Number: {{ farmDoc.cowNum }}</span>
           <span class="block mt-2 text-gray-600">Date: {{ new Date(farmDoc.createdAt.seconds * 1000).toDateString() }}</span>
+          <button @click="handleDelete" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Delete</button>
         </div>
         <div v-else>Loading...</div>
       </div>
@@ -15,13 +16,20 @@
   
   <script setup>
   import { ref } from 'vue';
-  import { useRoute } from 'vue-router';
-  import getDocument from '~/composables/getDocument'; // Ensure correct path
+  import { useRoute, useRouter } from 'vue-router';
+  import useDocument from '~/composables/useDocument'; // Ensure correct path
   
   const route = useRoute();
+  const router = useRouter();
   const { id } = route.params;
   
-  const { document: farmDoc, error } = getDocument('cawList', id);
+  const { document: farmDoc, error, deleteDocument } = useDocument('cawList', id);
+  
+  const handleDelete = async () => {
+    await deleteDocument();
+    router.push('/dashboard');
+    // Set the deleted document route
+  };
   </script>
   
   <style scoped>

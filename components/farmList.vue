@@ -1,44 +1,46 @@
 <template>
-    <div>
-      <input
-        type="text"
-        v-model="searchTerm"
-        placeholder="Search by title or cow number"
-        class="mb-4 p-2 border rounded w-full text-center"
-      />
-    </div>
-    <div v-if="farmDocs">
-      <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border text-center">
-          <thead>
-            <tr>
-              <th class="py-2 px-4 border-b">Title</th>
-              <th class="py-2 px-4 border-b">Description</th>
-              <th class="py-2 px-4 border-b">Cow Number</th>
-              <th class="py-2 px-4 border-b">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="doc in paginatedDocs" :key="doc.id" class="hover:bg-gray-100">
-              <NuxtLink
-                :to="`/detailsList/${doc.id}`"
-                class="contents"
-              >
-                <td class="py-2 px-4 border-b">{{ doc.title }}</td>
-                <td class="py-2 px-4 border-b">{{ doc.description }}</td>
-                <td class="py-2 px-4 border-b">{{ doc.cowNum }}</td>
-                <td class="py-2 px-4 border-b">{{ doc.createdAt.toDate().toDateString() }}</td>
-              </NuxtLink>
-            </tr>
-          </tbody>
-        </table>
+    <div class="container mx-auto p-4">
+      <div class="flex justify-center mb-4">
+        <input
+          type="text"
+          v-model="searchTerm"
+          placeholder="Search by title or cow number"
+          class="p-2 border rounded w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl text-center"
+        />
       </div>
-      <Pagination
-        :currentPage="currentPage"
-        :totalPages="totalPages"
-        :nextPage="nextPage"
-        :prevPage="prevPage"
-      />
+      <div v-if="farmDocs">
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white border text-center">
+            <thead>
+              <tr>
+                <th class="py-2 px-4 border-b">Title</th>
+                <th class="py-2 px-4 border-b">Description</th>
+                <th class="py-2 px-4 border-b">Cow Number</th>
+                <th class="py-2 px-4 border-b">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="doc in paginatedDocs" :key="doc.id" class="hover:bg-gray-100">
+                <NuxtLink
+                  :to="`/detailsList/${doc.id}`"
+                  class="contents"
+                >
+                  <td class="py-2 px-4 border-b">{{ doc.title }}</td>
+                  <td class="py-2 px-4 border-b">{{ doc.description }}</td>
+                  <td class="py-2 px-4 border-b">{{ doc.cowNum }}</td>
+                  <td class="py-2 px-4 border-b">{{ doc.createdAt.toDate().toDateString() }}</td>
+                </NuxtLink>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <Pagination
+          :currentPage="currentPage"
+          :totalPages="totalPages"
+          :nextPage="nextPage"
+          :prevPage="prevPage"
+        />
+      </div>
     </div>
   </template>
   
