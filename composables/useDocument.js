@@ -1,6 +1,6 @@
 import { ref, watchEffect } from 'vue';
 import { projectFirestore } from '@/firebase/config';
-import { doc, onSnapshot, deleteDoc } from 'firebase/firestore';
+import { doc, onSnapshot, deleteDoc, updateDoc } from 'firebase/firestore';
 
 const useDocument = (collectionName, id) => {
   const document = ref(null);
@@ -31,12 +31,23 @@ const useDocument = (collectionName, id) => {
       error.value = "Could not delete the document";
     }
   };
+  
+
+  const updateDocument = async (update) => {
+    try {
+        await updateDoc(documentRef,update)
+
+    } catch (err) {
+        console.log(err)
+    }
+
+  }
 
   watchEffect((onInvalidate) => {
     onInvalidate(() => unsubscribe());
   });
 
-  return { error, document, deleteDocument };
+  return { error, document, deleteDocument, updateDocument };
 };
 
 export default useDocument;

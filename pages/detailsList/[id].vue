@@ -39,6 +39,8 @@
     router.replace('/dashboard');
     // Set the deleted document route
   };
+
+  
   </script>
   
   <style scoped>
