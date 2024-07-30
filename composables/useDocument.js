@@ -1,6 +1,6 @@
 import { ref, watchEffect } from 'vue';
 import { projectFirestore } from '@/firebase/config';
-import { doc, onSnapshot, deleteDoc, updateDoc } from 'firebase/firestore';
+import { doc, onSnapshot, deleteDoc,updateDoc } from 'firebase/firestore';
 
 const useDocument = (collectionName, id) => {
   const document = ref(null);
@@ -33,14 +33,13 @@ const useDocument = (collectionName, id) => {
   };
   
 
-  const updateDocument = async (update) => {
+ 
+  const updateDocument = async (updatedData) => {
     try {
-        await updateDoc(documentRef,update)
-
+      await updateDoc(documentRef, updatedData);
     } catch (err) {
-        console.log(err)
+      error.value = err.message;
     }
-
   }
 
   watchEffect((onInvalidate) => {

@@ -6,17 +6,17 @@
           <h1 class="text-2xl font-bold">{{ farmDoc.title }}</h1>
           <p class="mt-4">{{ farmDoc.description }}</p>
           <span class="block mt-2 text-gray-600">Cow Number: {{ farmDoc.cowNum }}</span>
-          <span class="block mt-2 text-gray-600">Date: {{ new Date(farmDoc.createdAt.seconds * 1000).toDateString() }}</span>
+          <span class="block mt-2 text-gray-600">Date: {{ new Date(farmDoc.dateBorn.seconds * 1000).toDateString() }}</span>
           <button @click="handleDelete" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Delete</button>
         </div>
         <div v-else>Loading...</div>
       </div>
-      <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <button @click="showModal = true" class="bg-blue-500 text-white py-2 px-4 rounded">
-      Open Modal
-    </button>
-    <Modal v-if="showModal" @close="showModal = false" />
-  </div>
+      <div class="fixed bottom-4 right-4">
+        <button @click="showModal = true" class="bg-blue-500 text-white py-2 px-4 rounded">
+          Open Modal
+        </button>
+      </div>
+      <Modal v-if="showModal" @close="showModal = false" :farmDoc="farmDoc" />
     </div>
   </template>
   
@@ -24,7 +24,7 @@
   import { ref } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
   import useDocument from '~/composables/useDocument'; // Ensure correct path
-  import Modal from "@/components/Modal.vue"  
+  import Modal from "@/components/Modal.vue";  
   
   const route = useRoute();
   const router = useRouter();
@@ -35,12 +35,8 @@
   
   const handleDelete = async () => {
     await deleteDocument();
-    // Use replace to replace the current entry in the history stack
     router.replace('/dashboard');
-    // Set the deleted document route
   };
-
-  
   </script>
   
   <style scoped>
