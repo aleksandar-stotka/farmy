@@ -11,6 +11,12 @@
         </div>
         <div v-else>Loading...</div>
       </div>
+      <div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <button @click="showModal = true" class="bg-blue-500 text-white py-2 px-4 rounded">
+      Open Modal
+    </button>
+    <Modal v-if="showModal" @close="showModal = false" />
+  </div>
     </div>
   </template>
   
@@ -18,10 +24,12 @@
   import { ref } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
   import useDocument from '~/composables/useDocument'; // Ensure correct path
+  import Modal from "@/components/Modal.vue"  
   
   const route = useRoute();
   const router = useRouter();
   const { id } = route.params;
+  const showModal = ref(false);
   
   const { document: farmDoc, error, deleteDocument } = useDocument('cawList', id);
   
