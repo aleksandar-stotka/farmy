@@ -28,7 +28,7 @@
                   <td class="py-2 px-4 border-b">{{ doc.title }}</td>
                   <td class="py-2 px-4 border-b">{{ doc.description }}</td>
                   <td class="py-2 px-4 border-b">{{ doc.cowNum }}</td>
-                  <td class="py-2 px-4 border-b">{{ doc.createdAt.toDate().toDateString() }}</td>
+                  <td class="py-2 px-4 border-b">{{ formatDate(doc.dateBorn) }}</td>
                 </NuxtLink>
               </tr>
             </tbody>
@@ -55,6 +55,16 @@
       default: () => [],
     },
   });
+  
+  // Utility function to format Firestore timestamp to YYYY-MM-DD
+  const formatDate = (timestamp) => {
+    if (!timestamp || !timestamp.seconds) return '';
+    const date = new Date(timestamp.seconds * 1000);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
   
   const itemsPerPage = 10; // Number of items per page
   const currentPage = ref(1);
