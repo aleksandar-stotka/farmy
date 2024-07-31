@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto p-4">
     <div class="flex justify-between items-center mb-4">
-      <nuxt-link to="/create" class="text-blue-500 hover:underline">Back to Create</nuxt-link>
+      <nuxt-link to="/create" class="text-blue-500 hover:underline mr-4">Create New</nuxt-link>
       <input
         type="text"
         v-model="searchTerm"
