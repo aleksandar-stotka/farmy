@@ -26,10 +26,10 @@
                 :to="`/detailsList/${doc.id}`"
                 class="contents"
               >
-                <td class="py-2 px-4 border-b">{{ doc.title }}</td>
-                <td class="py-2 px-4 border-b">{{ doc.description }}</td>
-                <td class="py-2 px-4 border-b">{{ doc.cowNum }}</td>
-                <td class="py-2 px-4 border-b">{{ formatDate(doc.dateBorn) }}</td>
+                <td class="py-2 px-4 border-b" data-label="Title">{{ doc.title }}</td>
+                <td class="py-2 px-4 border-b" data-label="Description">{{ doc.description }}</td>
+                <td class="py-2 px-4 border-b" data-label="Cow Number">{{ doc.cowNum }}</td>
+                <td class="py-2 px-4 border-b" data-label="Date">{{ formatDate(doc.dateBorn) }}</td>
               </NuxtLink>
             </tr>
           </tbody>
@@ -118,26 +118,24 @@ const prevPage = () => {
   }
 
   tr {
-    display: block;
+    display: flex;
+    flex-direction: column;
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px;
   }
 
   td {
-    display: block;
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
     font-size: 14px;
     border-bottom: none;
-    position: relative;
-    padding-left: 50%;
+    padding: 10px 0;
   }
 
   td:before {
     content: attr(data-label);
-    position: absolute;
-    left: 0;
-    width: 50%;
-    padding-left: 10px;
+    flex: 1;
+    padding-right: 10px;
     font-weight: bold;
     text-align: left;
   }
