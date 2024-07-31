@@ -4,21 +4,21 @@
       <nuxt-link to="/dashboard" class="text-blue-500 hover:underline mr-4">Back to Dashboard</nuxt-link>
       <nuxt-link to="/create" class="text-blue-500 hover:underline">Create New</nuxt-link>
     </div>
-    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+    <div class="bg-white p-10 rounded-lg shadow-md text-center w-full max-w-2xl">
       <div v-if="error">{{ error }}</div>
       <div v-else-if="farmDoc">
-        <h1 class="text-2xl font-bold">{{ farmDoc.title }}</h1>
-        <p class="mt-4">{{ farmDoc.description }}</p>
-        <span class="block mt-2 text-gray-600">Cow Number: {{ farmDoc.cowNum }}</span>
-        <span class="block mt-2 text-gray-600">Date: {{ new Date(farmDoc.dateBorn.seconds * 1000).toDateString() }}</span>
-        <button @click="handleDelete" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Delete</button>
+        <h1 class="text-3xl font-bold">{{ farmDoc.title }}</h1>
+        <p class="mt-6 text-lg">{{ farmDoc.description }}</p>
+        <span class="block mt-4 text-gray-600 text-lg">Cow Number: {{ farmDoc.cowNum }}</span>
+        <span class="block mt-4 text-gray-600 text-lg">Date: {{ new Date(farmDoc.dateBorn.seconds * 1000).toDateString() }}</span>
+        <button @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">Delete</button>
       </div>
       <div v-else>Loading...</div>
-    </div>
-    <div class="fixed bottom-4 right-4">
-      <button @click="showModal = true" class="bg-blue-500 text-white py-2 px-4 rounded">
-        Open Modal
-      </button>
+      <div class="mt-6">
+        <button @click="showModal = true" class="bg-blue-500 text-white py-2 px-4 rounded">
+          edit
+        </button>
+      </div>
     </div>
     <Modal v-if="showModal" @close="showModal = false" :farmDoc="farmDoc" />
   </div>
