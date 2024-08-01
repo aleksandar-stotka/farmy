@@ -10,14 +10,12 @@
       />
     </div>
     <div v-if="farmDocs">
-      <div class="overflow-x-auto">
+      <div class="flex justify-center overflow-x-auto">
         <table class="min-w-full bg-white border text-center">
           <thead>
             <tr>
               <th class="py-2 px-4 border-b">Title</th>
-              <th class="py-2 px-4 border-b">Description</th>
               <th class="py-2 px-4 border-b">Cow Number</th>
-              <th class="py-2 px-4 border-b">Date</th>
             </tr>
           </thead>
           <tbody>
@@ -27,9 +25,7 @@
                 class="contents"
               >
                 <td class="py-2 px-4 border-b" data-label="Title">{{ doc.title }}</td>
-                <td class="py-2 px-4 border-b" data-label="Description">{{ doc.description }}</td>
                 <td class="py-2 px-4 border-b" data-label="Cow Number">{{ doc.cowNum }}</td>
-                <td class="py-2 px-4 border-b" data-label="Date">{{ formatDate(doc.dateBorn) }}</td>
               </NuxtLink>
             </tr>
           </tbody>
@@ -44,6 +40,9 @@
     </div>
   </div>
 </template>
+
+
+
 
 <script setup>
 import { defineProps, ref, computed } from 'vue';
@@ -106,38 +105,49 @@ const prevPage = () => {
 
 <style scoped>
 @media (max-width: 640px) {
-  table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
+  .overflow-x-auto {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
     width: 100%;
   }
 
+  table {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the table content */
+    white-space: nowrap;
+    width: auto; /* Adjust the table width to content */
+  }
+
   thead {
-    display: none;
+    display: none; /* Hide the table header */
   }
 
   tr {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Keep rows side by side */
+    justify-content: center; /* Center items in the row */
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px;
+    width: 100%; /* Ensure row width is 100% */
   }
 
   td {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center content within each cell */
     font-size: 14px;
     border-bottom: none;
-    padding: 10px 0;
+    padding: 10px 5px;
+    width: auto; /* Adjust cell width to content */
   }
 
   td:before {
     content: attr(data-label);
-    flex: 1;
-    padding-right: 10px;
+    padding-bottom: 5px;
     font-weight: bold;
-    text-align: left;
+    text-align: center; /* Center align labels */
   }
 }
 </style>
