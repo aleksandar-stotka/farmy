@@ -13,7 +13,7 @@
         <span class="block mt-4 text-gray-600 text-lg">Date: {{ new Date(farmDoc.dateBorn.seconds * 1000).toDateString() }}</span>
         <button @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">Delete</button>
       </div>
-      <div v-else>Loading...</div>
+      <div class="loading" v-else>Loading...</div>
       <div class="mt-6">
         <button @click="showModal = true" class="bg-blue-500 text-white py-2 px-4 rounded">
           edit

@@ -1,7 +1,10 @@
 
 <template>
   <div v-if="error">Could not fetch the data</div>
-     <FarmList :farmDocs="farmDocs" />
+     <div v-if="farmDocs">
+      <FarmList :farmDocs="farmDocs" />
+
+     </div>
 </template>
 
 <script setup>
@@ -19,6 +22,6 @@ const {error, documents: farmDocs} = getCollection("cawList")
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
