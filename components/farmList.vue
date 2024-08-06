@@ -5,7 +5,7 @@
       <input
         type="text"
         v-model="searchTerm"
-        placeholder="Search by title or cow number"
+        placeholder="Барај по број или Име"
         class="p-2 border rounded w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl text-center"
       />
     </div>
@@ -14,8 +14,8 @@
         <table class="min-w-full bg-white border text-center">
           <thead>
             <tr>
-              <th class="py-2 px-4 border-b">Title</th>
-              <th class="py-2 px-4 border-b">Cow Number</th>
+              <th class="py-2 px-4 border-b">Име на кравата</th>
+              <th class="py-2 px-4 border-b">Број на кравата</th>
             </tr>
           </thead>
           <tbody>
