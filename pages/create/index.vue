@@ -74,7 +74,7 @@ const { addDocument } = useCollection('cawList');
 
 const title = ref('');
 const description = ref('');
-const cowNum = ref('');s
+const cowNum = ref('');
 const dateBorn = ref('');
 const datecCalving = ref('');
 

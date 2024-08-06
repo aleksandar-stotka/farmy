@@ -12,14 +12,14 @@
         
         <span class="block mt-4 text-gray-600 text-lg">Телење: {{ new Date(farmDoc.datecCalving.seconds * 1000).toDateString() }}</span>
       
-        <p class="mt-6 text-lg">Водење: {{ farmDoc.description }}</p>
+        <p class="mt-6 text-lg">Водење:{{ farmDoc.description }}</p>
         <span class="block mt-4 text-gray-600 text-lg">Стелна: {{ new Date(farmDoc.dateBorn.seconds * 1000).toDateString() }}</span>
         <button @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">Избриши</button>
       </div>
       <div class="loading" v-else>Loading...</div>
       <div class="mt-6">
         <button @click="showModal = true" class="bg-blue-500 text-white py-2 px-4 rounded">
-          edit
+          ИЗМЕНИ
         </button>
       </div>
     </div>

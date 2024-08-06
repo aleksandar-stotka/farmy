@@ -8,24 +8,30 @@
         </button>
         <form @submit.prevent="handleSubmit" class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-gray-700">Name</label>
+            <label class="block text-sm font-medium text-gray-700">ИМЕ</label>
             <input type="text" v-model="form.title" placeholder="Enter name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
           </div>
           <div>
-            <label class="block text-sm font-medium text-gray-700">Description</label>
+          <label class="block text-sm font-medium text-gray-700">Телење</label>
+          <input
+            type="date"
+            v-model="form.datecCalving"
+            placeholder="Select date"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Boдење</label>
             <input type="text" v-model="form.description" placeholder="Enter description" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
           </div>
+          
           <div>
-            <label class="block text-sm font-medium text-gray-700">Number</label>
-            <input type="number" v-model="form.cowNum" placeholder="Enter number" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Date</label>
+            <label class="block text-sm font-medium text-gray-700">Стелна</label>
             <input type="date" v-model="form.dateBorn" placeholder="Select date" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
           </div>
           <div>
             <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              Update
+            ВНЕСИ 
             </button>
           </div>
         </form>
@@ -49,7 +55,8 @@
     title: '',
     description: '',
     cowNum: '',
-    dateBorn: ''
+    dateBorn: '',
+    datecCalving:''
   });
   
   // Convert Firestore timestamp to YYYY-MM-DD format for date input
@@ -68,7 +75,8 @@
         title: props.farmDoc.title,
         description: props.farmDoc.description,
         cowNum: props.farmDoc.cowNum,
-        dateBorn: formatDate(props.farmDoc.dateBorn) // Format the date for the input field
+        dateBorn: formatDate(props.farmDoc.dateBorn), // Format the date for the input field
+        datecCalving:formatDate(props.farmDoc.datecCalving),
       };
     }
   });
@@ -77,7 +85,8 @@
     const { updateDocument } = useDocument('cawList', props.farmDoc.id);
     const updatedData = {
       ...form.value,
-      dateBorn: new Date(form.value.dateBorn) // Ensure the date is in the correct format for Firestore
+      dateBorn: new Date(form.value.dateBorn) ,// Ensure the date is in the correct format for Firestore
+      datecCalving:new Date(form.value. datecCalving)
     };
     await updateDocument(updatedData);
     emit('close'); // Close the modal after update
