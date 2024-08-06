@@ -40,6 +40,7 @@
       />
     </div>
     <div class="loading" v-else>Loading...</div>
+    <div v-else="farmDocs.length <  1">Нема внесено податоци</div>
 
   </div>
 </template>

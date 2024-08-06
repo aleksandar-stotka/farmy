@@ -4,7 +4,7 @@
       <nuxt-link to="/dashboard" class="text-blue-500 hover:underline mb-4 block">Back to Dashboard</nuxt-link>
       <form @submit.prevent="handleSubmit" class="space-y-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700">Name</label>
+          <label class="block text-sm font-medium text-gray-700">Име на кравата</label>
           <input
             type="text"
             v-model="title"
@@ -13,16 +13,7 @@
           />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700">Description</label>
-          <input
-            type="text"
-            v-model="description"
-            placeholder="Enter description"
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Number</label>
+          <label class="block text-sm font-medium text-gray-700">Број</label>
           <input
             type="number"
             v-model="cowNum"
@@ -31,7 +22,26 @@
           />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700">Date</label>
+          <label class="block text-sm font-medium text-gray-700">Телење</label>
+          <input
+            type="date"
+            v-model="datecCalving"
+            placeholder="Select date"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Водење</label>
+          <input
+            type="text"
+            v-model="description"
+            placeholder="Enter description"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
+       
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Стелна</label>
           <input
             type="date"
             v-model="dateBorn"
@@ -64,8 +74,9 @@ const { addDocument } = useCollection('cawList');
 
 const title = ref('');
 const description = ref('');
-const cowNum = ref('');
+const cowNum = ref('');s
 const dateBorn = ref('');
+const datecCalving = ref('');
 
 const handleSubmit = async () => {
   await addDocument({
@@ -73,6 +84,7 @@ const handleSubmit = async () => {
     description: description.value,
     cowNum: cowNum.value,
     dateBorn: Timestamp.fromDate(new Date(dateBorn.value)),
+    datecCalving: Timestamp.fromDate(new Date(dateBorn.value)),
   }).then(() => {
     router.push('/dashboard');
   });

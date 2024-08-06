@@ -8,10 +8,13 @@
       <div v-if="error">{{ error }}</div>
       <div v-else-if="farmDoc">
         <h1 class="text-3xl font-bold">{{ farmDoc.title }}</h1>
-        <p class="mt-6 text-lg">{{ farmDoc.description }}</p>
-        <span class="block mt-4 text-gray-600 text-lg">Cow Number: {{ farmDoc.cowNum }}</span>
-        <span class="block mt-4 text-gray-600 text-lg">Date: {{ new Date(farmDoc.dateBorn.seconds * 1000).toDateString() }}</span>
-        <button @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">Delete</button>
+     
+        
+        <span class="block mt-4 text-gray-600 text-lg">Телење: {{ new Date(farmDoc.datecCalving.seconds * 1000).toDateString() }}</span>
+      
+        <p class="mt-6 text-lg">Водење: {{ farmDoc.description }}</p>
+        <span class="block mt-4 text-gray-600 text-lg">Стелна: {{ new Date(farmDoc.dateBorn.seconds * 1000).toDateString() }}</span>
+        <button @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">Избриши</button>
       </div>
       <div class="loading" v-else>Loading...</div>
       <div class="mt-6">
