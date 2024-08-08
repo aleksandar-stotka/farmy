@@ -5,7 +5,7 @@
       <input
         type="text"
         v-model="searchTerm"
-        placeholder="Search by title or cow number"
+        placeholder="Барај по број или име"
         class="p-2 border rounded w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl text-center"
       />
     </div>
@@ -14,9 +14,8 @@
         <table class="min-w-full bg-white border text-center">
           <thead>
             <tr>
-              <th class="py-2 px-4 border-b">Title</th>
-              <th class="py-2 px-4 border-b">Cow Number</th>
-              <th class="py-2 px-4 border-b">Date Calving</th>
+              <th class="py-2 px-4 border-b">Име на кравата</th>
+              <th class="py-2 px-4 border-b">Број на кравата</th>
             </tr>
           </thead>
           <tbody>
@@ -25,10 +24,9 @@
                 :to="`/detailsList/${doc.id}`"
                 class="contents"
               >
-                <td class="py-2 px-4 border-b" data-label="Title">{{ doc.title }}</td>
-                <td class="py-2 px-4 border-b" data-label="Cow Number">{{ doc.cowNum }}</td>
-                <td class="py-2 px-4 border-b" data-label="Date Calving">{{ formatDate(doc.datecCalving.seconds) }}</td>
-              </NuxtLink>
+                <td class="py-2 px-4 border-b" data-label="Име на кравата">{{ doc.title }}</td>
+                <td class="py-2 px-4 border-b" data-label="број на кравата">{{ doc.cowNum }}</td>
+\              </NuxtLink>
             </tr>
           </tbody>
         </table>

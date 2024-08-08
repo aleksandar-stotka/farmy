@@ -24,7 +24,15 @@
             <label class="block text-sm font-medium text-gray-700">Boдење</label>
             <input type="text" v-model="form.description" placeholder="Enter description" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
           </div>
-          
+          <div>
+          <label class="block text-sm font-medium text-gray-700">Забелешки</label>
+          <textarea
+            v-model="form.notes"
+            placeholder="notes"
+            rows="4"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          ></textarea>
+        </div>
           <div>
             <label class="block text-sm font-medium text-gray-700">Стелна</label>
             <input type="date" v-model="form.dateBorn" placeholder="Select date" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -56,7 +64,8 @@
     description: '',
     cowNum: '',
     dateBorn: '',
-    datecCalving:''
+    datecCalving:'',
+    notes: ''
   });
   
   // Convert Firestore timestamp to YYYY-MM-DD format for date input
@@ -77,6 +86,7 @@
         cowNum: props.farmDoc.cowNum,
         dateBorn: formatDate(props.farmDoc.dateBorn), // Format the date for the input field
         datecCalving:formatDate(props.farmDoc.datecCalving),
+        notes:props.farmDoc.notes
       };
     }
   });
