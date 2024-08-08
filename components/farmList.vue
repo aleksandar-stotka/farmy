@@ -5,17 +5,18 @@
       <input
         type="text"
         v-model="searchTerm"
-        placeholder="Барај по број или Име"
+        placeholder="Search by title or cow number"
         class="p-2 border rounded w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl text-center"
       />
     </div>
-    <div  v-if="farmDocs && farmDocs.length">
+    <div v-if="farmDocs">
       <div class="flex justify-center overflow-x-auto">
         <table class="min-w-full bg-white border text-center">
           <thead>
             <tr>
-              <th class="py-2 px-4 border-b">Име на кравата</th>
-              <th class="py-2 px-4 border-b">Број на кравата</th>
+              <th class="py-2 px-4 border-b">Title</th>
+              <th class="py-2 px-4 border-b">Cow Number</th>
+              <th class="py-2 px-4 border-b">Date Calving</th>
             </tr>
           </thead>
           <tbody>
@@ -26,9 +27,9 @@
               >
                 <td class="py-2 px-4 border-b" data-label="Title">{{ doc.title }}</td>
                 <td class="py-2 px-4 border-b" data-label="Cow Number">{{ doc.cowNum }}</td>
+                <td class="py-2 px-4 border-b" data-label="Date Calving">{{ formatDate(doc.datecCalving.seconds) }}</td>
               </NuxtLink>
             </tr>
-            
           </tbody>
         </table>
       </div>
@@ -39,14 +40,8 @@
         :prevPage="prevPage"
       />
     </div>
-    <div class="loading" v-else>Loading...</div>
-    <div v-else="farmDocs.length <  1">Нема внесено податоци</div>
-
   </div>
 </template>
-
-
-
 
 <script setup>
 import { defineProps, ref, computed } from 'vue';
@@ -59,9 +54,6 @@ const props = defineProps({
     default: () => [],
   },
 });
-
-// Utility function to format Firestore timestamp to YYYY-MM-DD
-
 
 const itemsPerPage = 10; // Number of items per page
 const currentPage = ref(1);
@@ -94,9 +86,16 @@ const nextPage = () => {
 };
 
 const prevPage = () => {
-  if (currentPage.value > 1) { 
+  if (currentPage.value > 1) {
     currentPage.value -= 1;
   }
+};
+
+// Date formatting function to format Firestore timestamp to DD-MM-YYYY
+const formatDate = (seconds) => {
+  const date = new Date(seconds * 1000);
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  return date.toLocaleDateString('default', options).replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$1-$2-$3');
 };
 </script>
 
