@@ -7,15 +7,12 @@
     <div class="bg-white p-10 rounded-lg shadow-md text-center w-full max-w-2xl">
       <div v-if="error">{{ error }}</div>
       <div v-else-if="farmDoc">
-        <h1 class="text-3xl font-bold">{{ farmDoc.title }}</h1>
-     
+        <h1 class="text-3xl font- truncate overflow-hidden">{{ farmDoc.title }}</h1>
         
-        <span class="block mt-4 text-gray-600 text-lg">Телење: {{ new Date(farmDoc.datecCalving.seconds * 1000).toDateString() }}</span>
-      
-        <p class="mt-6 text-lg">Водење:{{ farmDoc.description }}</p>
-        <span class="block mt-4 text-gray-600 text-lg">Стелна: {{ new Date(farmDoc.dateBorn.seconds * 1000).toDateString() }}</span>
-        <p class="whitespace-pre-wrap break-words">ЗАбелешки: {{ farmDoc.notes }}</p>
-
+        <span class="block mt-4 text-gray-600 text-lg">Телење: {{ formatDate(farmDoc.datecCalving.seconds) }}</span>
+        <p class="mt-6 text-lg">Водење: {{ farmDoc.description }}</p>
+        <span class="block mt-4 text-gray-600 text-lg">Стелна: {{ formatDate(farmDoc.dateBorn.seconds) }}</span>
+        <p>Забелешки: {{ farmDoc.notes }}</p>
         <button @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">Избриши</button>
       </div>
       <div class="loading" v-else>Loading...</div>
@@ -33,7 +30,7 @@
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import useDocument from '~/composables/useDocument'; // Ensure correct path
-import Modal from "@/components/Modal.vue";  
+import Modal from "@/components/Modal.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -45,6 +42,15 @@ const { document: farmDoc, error, deleteDocument } = useDocument('cawList', id);
 const handleDelete = async () => {
   await deleteDocument();
   router.replace('/dashboard');
+};
+
+// Format date function
+const formatDate = (seconds) => {
+  const date = new Date(seconds * 1000);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
 };
 </script>
 

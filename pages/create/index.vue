@@ -6,6 +6,7 @@
         <div>
           <label class="block text-sm font-medium text-gray-700">Име на кравата</label>
           <input
+          required
             type="text"
             v-model="title"
             placeholder="Enter name"
@@ -15,6 +16,7 @@
         <div>
           <label class="block text-sm font-medium text-gray-700">Број</label>
           <input
+            required
             type="number"
             v-model="cowNum"
             placeholder="Enter number"
@@ -24,6 +26,7 @@
         <div>
           <label class="block text-sm font-medium text-gray-700">Телење</label>
           <input
+            required
             type="date"
             v-model="datecCalving"
             placeholder="Select date"
@@ -33,6 +36,7 @@
         <div>
           <label class="block text-sm font-medium text-gray-700">Водење</label>
           <input
+          required
             type="text"
             v-model="description"
             placeholder="Enter description"
@@ -42,6 +46,7 @@
         <div>
           <label class="block text-sm font-medium text-gray-700">Стелна</label>
           <input
+           required
             type="date"
             v-model="dateBorn"
             placeholder="Select date"
@@ -51,6 +56,7 @@
         <div>
           <label class="block text-sm font-medium text-gray-700">Забелешки</label>
           <textarea
+            required
             v-model="notes"
             placeholder="notes"
             rows="4"
@@ -86,6 +92,8 @@ const cowNum = ref('');
 const dateBorn = ref('');
 const datecCalving = ref('');
 const notes = ref('');
+
+
 
 const handleSubmit = async () => {
   await addDocument({

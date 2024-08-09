@@ -89,12 +89,7 @@ const prevPage = () => {
   }
 };
 
-// Date formatting function to format Firestore timestamp to DD-MM-YYYY
-const formatDate = (seconds) => {
-  const date = new Date(seconds * 1000);
-  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  return date.toLocaleDateString('default', options).replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$1-$2-$3');
-};
+
 </script>
 
 <style scoped>
