@@ -26,7 +26,7 @@
               >
                 <td class="py-2 px-4 border-b" data-label="Име на кравата">{{ doc.title }}</td>
                 <td class="py-2 px-4 border-b" data-label="број на кравата">{{ doc.cowNum }}</td>
-\              </NuxtLink>
+              </NuxtLink>
             </tr>
           </tbody>
         </table>
