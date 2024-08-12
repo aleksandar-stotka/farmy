@@ -1,6 +1,8 @@
 
 <template>
   <div v-if="error">Could not fetch the data</div>
+      
+    <h2 class=" text-blue-600/100" v-if="user"> <span>Heloo</span> {{ user.displayName }}</h2>
      <div v-if="farmDocs">
       <FarmList :farmDocs="farmDocs" />
 
@@ -9,8 +11,13 @@
 
 <script setup>
 import { getCollection } from '#imports';
+import {getUser} from '#imports';
+
+const {user} = getUser()
 
 const {error, documents: farmDocs} = getCollection("cawList")
+
+
 
 
 

@@ -3,9 +3,7 @@
     <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg w-full max-w-sm">
       <h1 class="text-2xl font-semibold mb-6 text-center">Sign Up</h1>
       <form @submit.prevent="handleSubmit" class="space-y-4">
-        
-        <!-- Display Name Field -->
-        <div>
+         <div>
           <label for="displayName" class="block text-sm font-medium text-gray-700">Display Name</label>
           <input
             type="text"
