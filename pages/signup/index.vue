@@ -61,15 +61,32 @@
 <script setup>
 import { useSignup } from '#imports';
 import { ref } from 'vue';
+import {getUser} from '#imports';
+import { useRouter } from '#imports';
 
+
+
+const route = useRouter()
 const { error, signup } = useSignup();
+const {user} = getUser()
+
+
+if(user) {
+  console.log('user is there')
+}
 
 const displayName = ref('');
 const email = ref('');
 const password = ref('');
 
 const handleSubmit = () => {
-  signup(email.value, password.value, displayName.value);
+  signup(email.value, password.value, displayName.value)
+  if(user) {
+    route.push('/dashboard');
+  }
+  error.value = null
+  
+  
 };
 </script>
 

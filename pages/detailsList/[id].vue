@@ -39,6 +39,7 @@ const showModal = ref(false);
 
 const { document: farmDoc, error, deleteDocument } = useDocument('cawList', id);
 
+
 const handleDelete = async () => {
   await deleteDocument();
   router.replace('/dashboard');
