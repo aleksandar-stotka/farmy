@@ -11,7 +11,7 @@
         <p class="mt-6 text-lg">Водење: {{ farmDoc.description }}</p>
         <span class="block mt-4 text-gray-600 text-lg">Стелна: {{ formatDate(farmDoc.dateBorn.seconds) }}</span>
         <p>Забелешки: {{ farmDoc.notes }}</p>
-        <button @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">Избриши</button>
+        <button v-if="user" @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">Избриши</button>
       </div>
       <div class="loading" v-else>Loading...</div>
       

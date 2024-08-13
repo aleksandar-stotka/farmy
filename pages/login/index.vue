@@ -55,7 +55,7 @@
   
   
   const route = useRouter()
-  const { login } = useLogin();
+  const { login,error } = useLogin();
   const {user} = getUser()
   
   
@@ -63,7 +63,6 @@
     console.log('user is there')
   }
   
-  const displayName = ref('');
   const email = ref('');
   const password = ref('');
   
