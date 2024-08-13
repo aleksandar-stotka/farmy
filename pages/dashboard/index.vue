@@ -2,7 +2,7 @@
 <template>
   <div v-if="error">Could not fetch the data</div>
   <div v-if="!user">
-    <button @click="logout">logout</button>
+    <button @click="logout">login</button>
 
   </div>
   <div v-else>
@@ -25,8 +25,10 @@ import { getCollection } from '#imports';
 import {getUser} from '#imports';
 import {useLogout} from '#imports';
 
+
 const {user} = getUser()
 const {logout} = useLogout()
+
 
 
 const {error, documents: farmDocs} = getCollection("cawList")

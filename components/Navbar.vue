@@ -1,18 +1,19 @@
 <template>
-    <nav class="bg-white shadow-md">
+    <nav class="bg-white ">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
           <!-- Brand / Logo -->
-          <div class="flex-shrink-0">
-            <a href="/" class="text-xl font-semibold text-gray-800">Brand</a>
+          <div class="flex-shrink-0 text-center">
+            <img class="w-16 md:w-24 lg:w-32 object-contain" src="/public/logo.png" alt="Logo">
+            <nuxt-link to="/dashboard" class="text-blue-900 hover:underline mr-4"> Dashboard</nuxt-link>
+
           </div>
   
           <!-- Links (Centered vertically) -->
           <div class="hidden md:flex items-center space-x-4">
-            <a href="#" class="text-gray-700 hover:text-gray-900">Home</a>
-            <a href="#" class="text-gray-700 hover:text-gray-900">About</a>
-            <a href="#" class="text-gray-700 hover:text-gray-900">Services</a>
-            <a href="#" class="text-gray-700 hover:text-gray-900">Contact</a>
+            <nuxt-link to="/create" class="text-blue-500 hover:underline mr-4">Create New</nuxt-link>
+            <nuxt-link to="/login" class="text-blue-500 hover:underline mr-4">Login</nuxt-link>
+            <nuxt-link to="/signup" class="text-blue-500 hover:underline mr-4">Signup</nuxt-link>
           </div>
   
           <!-- Mobile Menu Button -->
@@ -30,10 +31,12 @@
       <transition name="slide-fade">
         <div v-if="isMenuOpen" class="md:hidden">
           <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#" class="block text-gray-700 hover:bg-gray-200 rounded-md px-3 py-2">Home</a>
-            <a href="#" class="block text-gray-700 hover:bg-gray-200 rounded-md px-3 py-2">About</a>
-            <a href="#" class="block text-gray-700 hover:bg-gray-200 rounded-md px-3 py-2">Services</a>
-            <a href="#" class="block text-gray-700 hover:bg-gray-200 rounded-md px-3 py-2">Contact</a>
+            <nuxt-link to="/create" class="text-blue-500 hover:underline mr-4">Create New</nuxt-link>
+            <nuxt-link to="/login" class="text-blue-500 hover:underline mr-4">Login</nuxt-link>
+            <nuxt-link to="/signup" class="text-blue-500 hover:underline mr-4">Signup</nuxt-link>
+
+
+            
           </div>
         </div>
       </transition>
