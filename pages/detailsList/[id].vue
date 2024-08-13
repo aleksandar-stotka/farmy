@@ -16,7 +16,7 @@
         <button @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">Избриши</button>
       </div>
       <div class="loading" v-else>Loading...</div>
-      <div class="mt-6">
+      <div v-if="user" class="mt-6">
         <button @click="showModal = true" class="bg-blue-500 text-white py-2 px-4 rounded">
           ИЗМЕНИ
         </button>
@@ -31,6 +31,7 @@ import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import useDocument from '~/composables/useDocument'; // Ensure correct path
 import Modal from "@/components/Modal.vue";
+import { getUser } from '#imports';
 
 const route = useRoute();
 const router = useRouter();
@@ -38,6 +39,7 @@ const { id } = route.params;
 const showModal = ref(false);
 
 const { document: farmDoc, error, deleteDocument } = useDocument('cawList', id);
+const {user} = getUser()
 
 
 const handleDelete = async () => {
