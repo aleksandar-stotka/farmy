@@ -3,7 +3,7 @@
  
   
       
-    <h2 class=" text-blue-950	p-2" v-if="user"> <span>Heloo</span> {{ user.displayName }}!</h2>
+    <h2 class=" text-blue-950	p-5" v-if="user"> <span>Heloo</span> {{ user.displayName }}!</h2>
      <div v-if="farmDocs">
       <FarmList :farmDocs="farmDocs" />
 
