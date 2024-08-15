@@ -14,8 +14,8 @@
         <table class="min-w-full bg-white border text-center">
           <thead>
             <tr>
-              <th class="py-2 px-4 border-b">Име на кравата</th>
-              <th class="py-2 px-4 border-b">Број на кравата</th>
+              <th class="py-2 px-4 border-b">Име</th>
+              <th class="py-2 px-4 border-b">Број</th>
             </tr>
           </thead>
           <tbody>
@@ -24,8 +24,8 @@
                 :to="`/detailsList/${doc.id}`"
                 class="contents"
               >
-                <td class="py-2 px-4 border-b" data-label="Име на кравата">{{ doc.title }}</td>
-                <td class="py-2 px-4 border-b" data-label="број на кравата">{{ doc.cowNum }}</td>
+                <td class="py-2 px-4 border-b" data-label="Име ">{{ doc.title }}</td>
+                <td class="py-2 px-4 border-b" data-label="Број ">{{ doc.cowNum }}</td>
               </NuxtLink>
             </tr>
           </tbody>

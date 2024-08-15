@@ -1,16 +1,6 @@
 
 <template>
-  <div v-if="error">Could not fetch the data</div>
-  <div v-if="!user">
-    <button @click="logout">login</button>
-
-  </div>
-  <div v-else>
-    <button @click="logout">logout</button>
-   
-    
-
-  </div>
+ 
   
       
     <h2 class=" text-blue-950	p-2" v-if="user"> <span>Heloo</span> {{ user.displayName }}!</h2>
@@ -27,7 +17,6 @@ import {useLogout} from '#imports';
 
 
 const {user} = getUser()
-const {logout} = useLogout()
 
 
 

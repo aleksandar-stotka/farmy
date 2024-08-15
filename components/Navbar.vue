@@ -4,8 +4,10 @@
         <div class="flex justify-between items-center h-16">
           <!-- Brand / Logo -->
           <div class="flex-shrink-0 text-center">
-            <img class="w-16 md:w-24 lg:w-32 object-contain" src="/public/logo.png" alt="Logo">
-            <nuxt-link to="/dashboard" class="text-blue-900 hover:underline mr-4"> Dashboard</nuxt-link>
+            
+            <nuxt-link to="/dashboard" class="text-blue-900 hover:underline mr-4">
+              <img class="w-16 md:w-24 lg:w-32 object-contain" src="/public/logo.png" alt="Logo">
+            </nuxt-link>
 
           </div>
   
@@ -15,6 +17,16 @@
             <nuxt-link to="/login" class="text-blue-500 hover:underline mr-4">Login</nuxt-link>
             <nuxt-link to="/signup" class="text-blue-500 hover:underline mr-4">Signup</nuxt-link>
           </div>
+          <div v-if="!user">
+    <button @click="logout">login</button>
+
+  </div>
+  <div v-else>
+    <button @click="logout">logout</button>
+   
+    
+
+  </div>
   
           <!-- Mobile Menu Button -->
           <div class="md:hidden flex items-center">
@@ -24,6 +36,8 @@
               </svg>
             </button>
           </div>
+          <div v-if="error">Could not fetch the data</div>
+ 
         </div>
       </div>
   
@@ -45,8 +59,12 @@
   
   <script setup>
   import { ref } from 'vue';
+  import { getUser } from '#imports';
+  import {useLogout} from '#imports';
   
   const isMenuOpen = ref(false);
+  const {user} = getUser()
+const {logout} = useLogout()
   
   const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
