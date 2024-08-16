@@ -8,7 +8,7 @@
         <h1 class="text-3xl font- truncate overflow-hidden">{{ farmDoc.title }}</h1>
         
         <span class="block mt-4 text-gray-600 text-lg">Телење: {{ formatDate(farmDoc.dateCalving.seconds) }}</span>
-        <p class="mt-6 text-lg">Водење: {{ farmDoc.description }}</p>
+        <p class="mt-6 text-lg overflow-hidden">Водење: {{ farmDoc.description }}</p>
         <span class="block mt-4 text-gray-600 text-lg">Стелна: {{ formatDate(farmDoc.dateBorn.seconds) }}</span>
         <p>Забелешки: {{ farmDoc.notes }}</p>
         <button v-if="user" @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">Избриши</button>
