@@ -56,6 +56,7 @@ const formatDate = (seconds) => {
   const year = date.getFullYear();
   return `${day}-${month}-${year}`;
 };
+
 </script>
 
 <style scoped>
