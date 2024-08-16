@@ -15,7 +15,7 @@
           <label class="block text-sm font-medium text-gray-700">Телење</label>
           <input
             type="date"
-            v-model="form.datecCalving"
+            v-model="form.dateCalving"
             placeholder="Select date"
             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
@@ -64,7 +64,7 @@
     description: '',
     cowNum: '',
     dateBorn: '',
-    datecCalving:'',
+    dateCalving:'',
     notes: ''
   });
   
@@ -85,7 +85,7 @@
         description: props.farmDoc.description,
         cowNum: props.farmDoc.cowNum,
         dateBorn: formatDate(props.farmDoc.dateBorn), // Format the date for the input field
-        datecCalving:formatDate(props.farmDoc.datecCalving),
+        dateCalving:formatDate(props.farmDoc.dateCalving),
         notes:props.farmDoc.notes
       };
     }
@@ -96,7 +96,7 @@
     const updatedData = {
       ...form.value,
       dateBorn: new Date(form.value.dateBorn) ,// Ensure the date is in the correct format for Firestore
-      datecCalving:new Date(form.value. datecCalving)
+      dateCalving:new Date(form.value. dateCalving)
     };
     await updateDocument(updatedData);
     emit('close'); // Close the modal after update

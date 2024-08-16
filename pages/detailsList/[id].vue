@@ -7,7 +7,7 @@
       <div v-else-if="farmDoc">
         <h1 class="text-3xl font- truncate overflow-hidden">{{ farmDoc.title }}</h1>
         
-        <span class="block mt-4 text-gray-600 text-lg">Телење: {{ formatDate(farmDoc.datecCalving.seconds) }}</span>
+        <span class="block mt-4 text-gray-600 text-lg">Телење: {{ formatDate(farmDoc.dateCalving.seconds) }}</span>
         <p class="mt-6 text-lg">Водење: {{ farmDoc.description }}</p>
         <span class="block mt-4 text-gray-600 text-lg">Стелна: {{ formatDate(farmDoc.dateBorn.seconds) }}</span>
         <p>Забелешки: {{ farmDoc.notes }}</p>

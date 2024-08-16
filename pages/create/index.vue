@@ -28,7 +28,7 @@
           <input
             required
             type="date"
-            v-model="datecCalving"
+            v-model="dateCalving"
             placeholder="Select date"
             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
@@ -90,7 +90,7 @@ const title = ref('');
 const description = ref('');
 const cowNum = ref('');
 const dateBorn = ref('');
-const datecCalving = ref('');
+const dateCalving = ref('');
 const notes = ref('');
 
 
@@ -101,7 +101,7 @@ const handleSubmit = async () => {
     description: description.value,
     cowNum: cowNum.value,
     dateBorn: Timestamp.fromDate(new Date(dateBorn.value)),
-    datecCalving: Timestamp.fromDate(new Date(datecCalving.value)),
+    dateCalving: Timestamp.fromDate(new Date(dateCalving.value)),
     notes: notes.value
   }).then(() => {
     router.push('/dashboard');
