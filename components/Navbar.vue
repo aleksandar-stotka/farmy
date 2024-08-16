@@ -11,7 +11,11 @@
 
         <!-- Links (Centered vertically) -->
         <div class="hidden md:flex items-center space-x-4">
-          <nuxt-link to="/create" class="text-blue-500 hover:text-blue-700 transition duration-300">Create New</nuxt-link>
+
+          <div v-if="user">
+            <nuxt-link to="/create" class="text-blue-500 hover:text-blue-700 transition duration-300">Create New</nuxt-link>
+          </div>
+          
           <nuxt-link to="/signup" class="text-blue-500 hover:text-blue-700 transition duration-300">Signup</nuxt-link>
         </div>
 
