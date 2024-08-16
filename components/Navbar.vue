@@ -11,17 +11,16 @@
 
         <!-- Links (Centered vertically) -->
         <div class="hidden md:flex items-center space-x-4">
-          <nuxt-link to="/create" class="text-blue-500 hover:underline mr-4">Create New</nuxt-link>
-          <nuxt-link to="/login" class="text-blue-500 hover:underline mr-4">Login</nuxt-link>
-          <nuxt-link to="/signup" class="text-blue-500 hover:underline mr-4">Signup</nuxt-link>
+          <nuxt-link to="/create" class="text-blue-500 hover:text-blue-700 transition duration-300">Create New</nuxt-link>
+          <nuxt-link to="/signup" class="text-blue-500 hover:text-blue-700 transition duration-300">Signup</nuxt-link>
         </div>
 
         <!-- User Login/Logout Button -->
         <div v-if="!user">
-          <button @click="logout">Login</button>
+          <nuxt-link to="/login" class="text-blue-500 hover:text-blue-700 transition duration-300">Login</nuxt-link>
         </div>
         <div v-else>
-          <button @click="logout">Logout</button>
+          <button @click="logout" class="px-3 py-1 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded transition duration-300">Logout</button>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -41,10 +40,10 @@
     <!-- Mobile Menu with Transition -->
     <transition name="slide-fade">
       <div v-if="isMenuOpen" class="md:hidden">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <nuxt-link to="/create" class="text-blue-500 hover:underline mr-4">Create New</nuxt-link>
-          <nuxt-link to="/login" class="text-blue-500 hover:underline mr-4">Login</nuxt-link>
-          <nuxt-link to="/signup" class="text-blue-500 hover:underline mr-4">Signup</nuxt-link>
+        <div class="flex flex-col px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <nuxt-link to="/create" class="text-blue-500 hover:text-blue-700 transition duration-300">Create New</nuxt-link>
+          <nuxt-link to="/login" class="text-blue-500 hover:text-blue-700 transition duration-300">Login</nuxt-link>
+          <nuxt-link to="/signup" class="text-blue-500 hover:text-blue-700 transition duration-300">Signup</nuxt-link>
         </div>
       </div>
     </transition>

@@ -13,7 +13,6 @@
 <script setup>
 import { getCollection } from '#imports';
 import {getUser} from '#imports';
-import {useLogout} from '#imports';
 
 
 const {user} = getUser()
