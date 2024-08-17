@@ -1,38 +1,54 @@
-
 <template>
- 
-  
-      
-    <h2 class=" text-blue-950	p-5" v-if="user"> <span>Heloo</span> {{ user.displayName }}!</h2>
-     <div v-if="farmDocs">
+    <Transition>
+        <p v-if="error"></p>
+      <div 
+        class="h-screen flex justify-center items-center bg-cover bg-center" 
+        style="background-image: linear-gradient(to right, rgba(50, 149, 100, 0.8), rgba(90, 130, 180, 0.8)), url('/logo.png');" 
+        v-if="displayNameFade || show"
+      >
+        <h2 class="text-white text-8xl" v-if="user">
+          <span>Hello</span> {{ user.displayName }}!!
+        </h2>
+      </div>
+    </Transition>
+    
+    <div v-if="farmDocs">
       <FarmList :farmDocs="farmDocs" />
-
-     </div>
-</template>
-
-<script setup>
-import { getCollection } from '#imports';
-import {getUser} from '#imports';
-
-
-const {user} = getUser()
-
-
-
-const {error, documents: farmDocs} = getCollection("cawList")
-
-
-
-
-
-
+    </div>
+  </template>
   
-
-
-
-
-</script>
-
-<style scoped>
-
-</style>
+  <script setup>
+  import { getCollection } from '#imports';
+  import { getUser } from '#imports';
+  import { ref, onMounted } from 'vue';
+  
+  const displayNameFade = ref(true);
+  const show = ref(true);
+  
+  onMounted(() => {
+    setTimeout(() => {
+      displayNameFade.value = false;
+      show.value = false    }, 4000);
+   
+  });
+  
+  const { user } = getUser();
+  const { error, documents: farmDocs } = getCollection("cawList");
+  </script>
+  
+  <style scoped>
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.5s ease;
+  }
+  
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
+  
+  h2 {
+    transition: opacity 0.5s ease;
+  }
+  </style>
+  
