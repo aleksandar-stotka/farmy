@@ -1,6 +1,5 @@
 <template>
     <Transition>
-        <p v-if="error"></p>
       <div 
         class="h-screen flex justify-center items-center bg-cover bg-center" 
         style="background-image: linear-gradient(to right, rgba(50, 149, 100, 0.8), rgba(90, 130, 180, 0.8)), url('/logo.png');" 
