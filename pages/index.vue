@@ -1,4 +1,5 @@
 <template>
+  
     <div class="container flex justify-center items-center min-h-screen">
       <div class="flex flex-col space-y-4 md:flex-row md:space-x-8 md:space-y-0">
         <nuxt-link to="/dashboard">

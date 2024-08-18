@@ -27,7 +27,7 @@
   onMounted(() => {
     setTimeout(() => {
       displayNameFade.value = false;
-      show.value = false    }, 4000);
+      show.value = false    }, 3000);
    
   });
   
