@@ -1,20 +1,50 @@
 <template>
-  
-    <div class="container flex justify-center items-center min-h-screen">
-      <div class="flex flex-col space-y-4 md:flex-row md:space-x-8 md:space-y-0">
-        <nuxt-link to="/dashboard">
-          <button class="px-8 py-4 bg-blue-500 text-white text-xl rounded hover:bg-blue-600">DASHBOARD</button>
-        </nuxt-link>
-        <nuxt-link to="/create">
-          <button class="px-8 py-4 bg-green-500 text-white text-xl rounded hover:bg-green-600">CREATE</button>
-        </nuxt-link>
-      </div>
+  <Transition>
+    <div 
+      class="h-screen flex justify-center items-center bg-cover bg-center" 
+      style="background-image: linear-gradient(to right, rgba(50, 149, 100, 0.8), rgba(90, 130, 180, 0.8)), url('/logo.png');" 
+      v-if="displayNameFade || show"
+    >
+      <h2 class="text-white text-8xl" v-if="user">
+        <span>Hello</span> {{ user.displayName }}!!
+      </h2>
     </div>
-  </template>
+  </Transition>
   
-  <script setup>
-  </script>
   
-  <style scoped>
-  </style>
-  
+</template>
+
+<script setup>
+import { getCollection } from '#imports';
+import { getUser } from '#imports';
+import { ref, onMounted } from 'vue';
+
+const displayNameFade = ref(true);
+const show = ref(true);
+
+onMounted(() => {
+  setTimeout(() => {
+    displayNameFade.value = false;
+    show.value = false    }, 3000);
+ 
+});
+
+const { user } = getUser();
+const { error, documents: farmDocs } = getCollection("cawList");
+</script>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+h2 {
+  transition: opacity 0.5s ease;
+}
+</style>

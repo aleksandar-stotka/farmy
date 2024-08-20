@@ -1,16 +1,8 @@
 <template>
-    <Transition>
-      <div 
-        class="h-screen flex justify-center items-center bg-cover bg-center" 
-        style="background-image: linear-gradient(to right, rgba(50, 149, 100, 0.8), rgba(90, 130, 180, 0.8)), url('/logo.png');" 
-        v-if="displayNameFade || show"
-      >
-        <h2 class="text-white text-8xl" v-if="user">
-          <span>Hello</span> {{ user.displayName }}!!
-        </h2>
-      </div>
-    </Transition>
-    
+   
+   <span class="text-dark p-5" v-if="user">
+        <span>Hello</span> {{ user.displayName }}!!
+      </span>
     <div v-if="farmDocs">
       <FarmList :farmDocs="farmDocs" />
     </div>
@@ -24,12 +16,7 @@
   const displayNameFade = ref(true);
   const show = ref(true);
   
-  onMounted(() => {
-    setTimeout(() => {
-      displayNameFade.value = false;
-      show.value = false    }, 3000);
-   
-  });
+  
   
   const { user } = getUser();
   const { error, documents: farmDocs } = getCollection("cawList");
