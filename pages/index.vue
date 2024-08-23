@@ -18,14 +18,24 @@
 import { getCollection } from '#imports';
 import { getUser } from '#imports';
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+
+
+const router = useRouter()
 
 const displayNameFade = ref(true);
 const show = ref(true);
 
+
+
 onMounted(() => {
   setTimeout(() => {
     displayNameFade.value = false;
-    show.value = false    }, 3000);
+    show.value = false    }, 3000)
+
+    router.push('/dashboard');
+
+    
  
 });
 
