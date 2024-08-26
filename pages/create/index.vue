@@ -104,7 +104,7 @@ const handleSubmit = async () => {
     dateCalving: Timestamp.fromDate(new Date(dateCalving.value)),
     notes: notes.value
   }).then(() => {
-    router.push('/dashboard');
+    router.push('/');
   });
 };
 </script>

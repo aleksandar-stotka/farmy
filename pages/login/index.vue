@@ -69,7 +69,7 @@
   const handleSubmit = () => {
     login(email.value, password.value)
     if(user) {
-      route.push('/dashboard');
+      route.push('/');
     }
     error.value = null
     

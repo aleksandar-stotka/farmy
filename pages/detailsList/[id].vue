@@ -45,7 +45,7 @@ const {user} = getUser()
 
 const handleDelete = async () => {
   await deleteDocument();
-  router.replace('/dashboard');
+  router.replace('/');
 };
 
 // Format date function
