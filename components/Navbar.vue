@@ -4,7 +4,7 @@
       <div class="flex justify-between items-center h-16">
         <!-- Brand / Logo -->
         <div class="flex-shrink-0 text-center">
-          <nuxt-link to="/dashboard" class="text-blue-900 hover:underline mr-4">
+          <nuxt-link to="/" class="text-blue-900 hover:underline mr-4">
             <img class="w-16 md:w-24 lg:w-32 object-contain" src="/public/logo.png" alt="Logo">
           </nuxt-link>
         </div>
