@@ -59,20 +59,24 @@ const searchTerm = ref('');
 
 
 const filterFarmDocs = computed(() => {
-  return props.farmDocs.filter((item) => {
-    const lowerCaseSearchTerm = searchTerm.value.toLowerCase();
-    return (
-      item.title.toLowerCase().includes(lowerCaseSearchTerm) ||
-      item.cowNum.toString().includes(lowerCaseSearchTerm)
-    );
-  });
+  return props.farmDocs
+    .filter((item) => {
+      const lowerCaseSearchTerm = searchTerm.value.toLowerCase();
+      return (
+        item.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+        item.cowNum.toString().includes(lowerCaseSearchTerm)
+      );
+    })
+    .sort((a, b) => {
+      return new Date(a.dateCalving.seconds * 1000) - new Date(b.dateCalving.seconds * 1000);
+    });
 });
 
 const totalPages = computed(() => {
   return Math.ceil(filterFarmDocs.value.length / itemsPerPage);
 });
 
-const paginatedDocs = computed(() => {
+const paginatedDocs = computed(() => { 
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   return filterFarmDocs.value.slice(start, end);
