@@ -59,17 +59,13 @@ const searchTerm = ref('');
 
 
 const filterFarmDocs = computed(() => {
-  return props.farmDocs
-    .filter((item) => {
-      const lowerCaseSearchTerm = searchTerm.value.toLowerCase();
-      return (
-        item.title.toLowerCase().includes(lowerCaseSearchTerm) ||
-        item.cowNum.toString().includes(lowerCaseSearchTerm)
-      );
-    })
-    .sort((a, b) => {
-      return new Date(a.dateBorn.seconds * 1000) - new Date(b.dateBorn.seconds * 1000);
-    });
+  return props.farmDocs.filter((item) => {
+    const lowerCaseSearchTerm = searchTerm.value.toLowerCase();
+    return (
+      item.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+      item.cowNum.toString().includes(lowerCaseSearchTerm)
+    );
+  });
 });
 
 const totalPages = computed(() => {
