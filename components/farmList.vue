@@ -59,20 +59,16 @@ const searchTerm = ref('');
 
 // Computed property to filter the farmDocs based on the search term
 const filterFarmDocs = computed(() => {
-  if (!searchTerm.value) {
-    return props.farmDocs;
-  }
-  return props.farmDocs.filter((doc) => {
-    return (
-      doc.title.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
-      doc.cowNum.toLowerCase().includes(searchTerm.value.toLowerCase())
-    );
+  const lowerCaseSearchTerm = searchTerm.value.toLowerCase();
+
+  return props.farmDocs.filter((item) => {
+    const titleMatch = item.title.toLowerCase().includes(lowerCaseSearchTerm);
+    const cowNumMatch = item.cowNum.toString().includes(searchTerm.value); // Convert cowNum to string
+
+    return titleMatch || cowNumMatch;
   });
 });
 
-const totalPages = computed(() => {
-  return Math.ceil(filterFarmDocs.value.length / itemsPerPage);
-});
 
 const paginatedDocs = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;

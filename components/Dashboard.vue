@@ -1,7 +1,7 @@
 <template>
    
     <span class="text-dark p-5" v-if="user">
-         <span>Hello</span> {{ user.displayName }}!!
+         <span>Hello</span>   {{ user.displayName }}!!
        </span>
        <p v-if="error">{{ error.value }}</p>
      <div v-if="farmDocs">
