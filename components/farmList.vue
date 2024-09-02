@@ -57,12 +57,24 @@ const itemsPerPage = 10; // Number of items per page
 const currentPage = ref(1);
 const searchTerm = ref('');
 
+// Computed property to filter the farmDocs based on the search term
+const filterFarmDocs = computed(() => {
+  if (!searchTerm.value) {
+    return props.farmDocs;
+  }
+  return props.farmDocs.filter((doc) => {
+    return (
+      doc.title.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
+      doc.cowNum.toLowerCase().includes(searchTerm.value.toLowerCase())
+    );
+  });
+});
 
 const totalPages = computed(() => {
   return Math.ceil(filterFarmDocs.value.length / itemsPerPage);
 });
 
-const paginatedDocs = computed(() => { 
+const paginatedDocs = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   return filterFarmDocs.value.slice(start, end);
@@ -79,9 +91,8 @@ const prevPage = () => {
     currentPage.value -= 1;
   }
 };
-
-
 </script>
+
 
 <style scoped>
 @media (max-width: 640px) {
