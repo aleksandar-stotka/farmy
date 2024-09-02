@@ -58,20 +58,6 @@ const currentPage = ref(1);
 const searchTerm = ref('');
 
 
-const filterFarmDocs = computed(() => {
-  return props.farmDocs
-    .filter((item) => {
-      const lowerCaseSearchTerm = searchTerm.value.toLowerCase();
-      return (
-        item.title.toLowerCase().includes(lowerCaseSearchTerm) ||
-        item.cowNum.toString().includes(lowerCaseSearchTerm)
-      );
-    })
-    .sort((a, b) => {
-      return new Date(a.dateCalving.seconds * 1000) - new Date(b.dateCalving.seconds * 1000);
-    });
-});
-
 const totalPages = computed(() => {
   return Math.ceil(filterFarmDocs.value.length / itemsPerPage);
 });

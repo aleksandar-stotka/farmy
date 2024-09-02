@@ -1,12 +1,11 @@
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg w-full max-w-sm md:max-w-md">
-      <nuxt-link to="/dashboard" class="text-blue-500 hover:underline mb-4 block">Back to Dashboard</nuxt-link>
+      <nuxt-link to="/" class="text-blue-500 hover:underline mb-4 block">Back to Dashboard</nuxt-link>
       <form @submit.prevent="handleSubmit" class="space-y-4">
         <div>
           <label class="block text-sm font-medium text-gray-700">Име на кравата</label>
           <input
-          required
             type="text"
             v-model="title"
             placeholder="Enter name"
@@ -16,7 +15,6 @@
         <div>
           <label class="block text-sm font-medium text-gray-700">Број</label>
           <input
-            required
             type="number"
             v-model="cowNum"
             placeholder="Enter number"
@@ -26,7 +24,6 @@
         <div>
           <label class="block text-sm font-medium text-gray-700">Телење</label>
           <input
-            required
             type="date"
             v-model="dateCalving"
             placeholder="Select date"
@@ -36,7 +33,6 @@
         <div>
           <label class="block text-sm font-medium text-gray-700">Водење</label>
           <input
-          required
             type="text"
             v-model="description"
             placeholder="Enter description"
@@ -46,7 +42,6 @@
         <div>
           <label class="block text-sm font-medium text-gray-700">Стелна</label>
           <input
-           required
             type="date"
             v-model="dateBorn"
             placeholder="Select date"
@@ -56,7 +51,6 @@
         <div>
           <label class="block text-sm font-medium text-gray-700">Забелешки</label>
           <textarea
-            required
             v-model="notes"
             placeholder="notes"
             rows="4"
@@ -93,21 +87,30 @@ const dateBorn = ref('');
 const dateCalving = ref('');
 const notes = ref('');
 
-
-
 const handleSubmit = async () => {
-  await addDocument({
-    title: title.value,
-    description: description.value,
-    cowNum: cowNum.value,
-    dateBorn: Timestamp.fromDate(new Date(dateBorn.value)),
-    dateCalving: Timestamp.fromDate(new Date(dateCalving.value)),
-    notes: notes.value
-  }).then(() => {
+  try {
+    const newDocument = {
+      title: title.value,
+      description: description.value,
+      cowNum: cowNum.value,
+      notes: notes.value,
+    };
+
+    if (dateBorn.value) {
+      newDocument.dateBorn = Timestamp.fromDate(new Date(dateBorn.value));
+    }
+    if (dateCalving.value) {
+      newDocument.dateCalving = Timestamp.fromDate(new Date(dateCalving.value));
+    }
+
+    await addDocument(newDocument);
     router.push('/');
-  });
+  } catch (error) {
+    console.error('Error adding document:', error.message);
+  }
 };
 </script>
+
 
 <style scoped>
 /* Your styles here */

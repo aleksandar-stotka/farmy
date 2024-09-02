@@ -1,17 +1,28 @@
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="absolute top-4 left-4">
-    </div>
+    <div class="absolute top-4 left-4"></div>
     <div class="bg-white p-10 rounded-lg shadow-md text-center w-full max-w-2xl">
       <div v-if="error">{{ error }}</div>
       <div v-else-if="farmDoc">
         <h1 class="text-3xl font- truncate overflow-hidden">{{ farmDoc.title }}</h1>
         
-        <span class="block mt-4 text-gray-600 text-lg">Телење: {{ formatDate(farmDoc.dateCalving.seconds) }}</span>
+        <!-- Check if dateCalving exists before formatting -->
+        <span v-if="farmDoc.dateCalving" class="block mt-4 text-gray-600 text-lg">
+          Телење: {{ formatDate(farmDoc.dateCalving.seconds) }}
+        </span>
+
         <p class="mt-6 text-lg overflow-hidden">Водење: {{ farmDoc.description }}</p>
-        <span class="block mt-4 text-gray-600 text-lg">Стелна: {{ formatDate(farmDoc.dateBorn.seconds) }}</span>
+
+        <!-- Check if dateBorn exists before formatting -->
+        <span v-if="farmDoc.dateBorn" class="block mt-4 text-gray-600 text-lg">
+          Стелна: {{ formatDate(farmDoc.dateBorn.seconds) }}
+        </span>
+
         <p>Забелешки: {{ farmDoc.notes }}</p>
-        <button v-if="user" @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">Избриши</button>
+
+        <button v-if="user" @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">
+          Избриши
+        </button>
       </div>
       <div class="loading" v-else>Loading...</div>
       
@@ -24,7 +35,6 @@
     
     <Modal v-if="showModal" @close="showModal = false" :farmDoc="farmDoc" />
   </div>
-  
 </template>
 
 <script setup>
@@ -40,8 +50,7 @@ const { id } = route.params;
 const showModal = ref(false);
 
 const { document: farmDoc, error, deleteDocument } = useDocument('cawList', id);
-const {user} = getUser()
-
+const { user } = getUser();
 
 const handleDelete = async () => {
   await deleteDocument();
@@ -56,7 +65,6 @@ const formatDate = (seconds) => {
   const year = date.getFullYear();
   return `${day}-${month}-${year}`;
 };
-
 </script>
 
 <style scoped>
