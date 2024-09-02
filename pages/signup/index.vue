@@ -80,7 +80,7 @@ const password = ref('');
 const handleSubmit = () => {
   signup(email.value, password.value, displayName.value)
   if(user) {
-    route.push('/dashboard');
+    route.push('/');
   }
   error.value = null
   
