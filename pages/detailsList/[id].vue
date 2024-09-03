@@ -8,17 +8,17 @@
         
         <!-- Check if dateCalving exists before formatting -->
         <span v-if="farmDoc.dateCalving" class="block mt-4 text-gray-600 text-lg">
-          Телење: {{ formatDate(farmDoc.dateCalving.seconds) }}
+          <p v-if="farmDoc.dateCalving">Телење:</p> {{ formatDate(farmDoc.dateCalving.seconds) }}
         </span>
 
-        <p class="mt-6 text-lg overflow-hidden">Водење: {{ farmDoc.description }}</p>
+        <p v-if="farmDoc.description" class="mt-6 text-lg overflow-hidden">Водење: {{ farmDoc.description }}</p>
 
         <!-- Check if dateBorn exists before formatting -->
         <span v-if="farmDoc.dateBorn" class="block mt-4 text-gray-600 text-lg">
           Стелна: {{ formatDate(farmDoc.dateBorn.seconds) }}
         </span>
 
-        <p>Забелешки: {{ farmDoc.notes }}</p>
+        <p v-if="farmDoc.notes">Забелешки: {{ farmDoc.notes }}</p>
 
         <button v-if="user" @click="handleDelete" class="mt-6 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700">
           Избриши
