@@ -1,7 +1,7 @@
 <template>
   <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-75">
     <div class="relative bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
-      <button @click="emit('close')" class="absolute top-0 right-0 mt-4 mr-4 text-gray-500 hover:text-gray-700">
+      <button @click="$emit('close')" class="absolute top-0 right-0 mt-4 mr-4 text-gray-500 hover:text-gray-700">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
@@ -29,7 +29,7 @@
         </div>
         <div>
           <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            ВНЕСИ 
+            ВНЕСИ
           </button>
         </div>
       </form>
@@ -39,7 +39,7 @@
 
 <script setup>
 import { ref, watchEffect } from 'vue';
-import useDocument from '~/composables/useDocument'; // Ensure correct path
+import useDocument from '~/composables/useDocument';
 
 const props = defineProps({
   farmDoc: {
@@ -54,11 +54,10 @@ const form = ref({
   description: '',
   cowNum: '',
   dateBorn: '',
-  dateCalving:'',
+  dateCalving: '',
   notes: ''
 });
 
-// Convert Firestore timestamp to YYYY-MM-DD format for date input
 const formatDate = (timestamp) => {
   if (!timestamp || !timestamp.seconds) return '';
   const date = new Date(timestamp.seconds * 1000);
@@ -71,12 +70,12 @@ const formatDate = (timestamp) => {
 watchEffect(() => {
   if (props.farmDoc) {
     form.value = {
-      title: props.farmDoc.title,
-      description: props.farmDoc.description,
-      cowNum: props.farmDoc.cowNum,
-      dateBorn: formatDate(props.farmDoc.dateBorn), // Format the date for the input field
-      dateCalving: formatDate(props.farmDoc.dateCalving), // Format the date for the input field
-      notes: props.farmDoc.notes
+      title: props.farmDoc.title || '',
+      description: props.farmDoc.description || '',
+      cowNum: props.farmDoc.cowNum || '',
+      dateBorn: formatDate(props.farmDoc.dateBorn),
+      dateCalving: formatDate(props.farmDoc.dateCalving),
+      notes: props.farmDoc.notes || ''
     };
   }
 });
@@ -85,11 +84,11 @@ const handleSubmit = async () => {
   const { updateDocument } = useDocument('cawList', props.farmDoc.id);
   const updatedData = {
     ...form.value,
-    dateBorn: new Date(form.value.dateBorn), // Convert to Date object
-    dateCalving: new Date(form.value.dateCalving) // Convert to Date object
+    dateBorn: form.value.dateBorn ? new Date(form.value.dateBorn) : null,
+    dateCalving: form.value.dateCalving ? new Date(form.value.dateCalving) : null
   };
   await updateDocument(updatedData);
-  emit('close'); // Close the modal after update
+  emit('close');
 };
 </script>
 
